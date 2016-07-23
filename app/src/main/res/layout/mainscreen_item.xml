@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="100dip"
+    android:layout_height="100dip"
+    android:gravity="center_horizontal"
+    android:background="@drawable/item_background">
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/iv_main_icon"
+        android:src="@drawable/icon5"
+        android:scaleType="fitXY"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:text="功能名字 "
+        android:textColor="@color/colorText"
+        android:id="@+id/tv_main_name"/>
+
+
+</LinearLayout>

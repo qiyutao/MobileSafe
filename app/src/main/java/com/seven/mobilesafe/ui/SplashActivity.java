@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
@@ -18,6 +20,14 @@ import com.seven.mobilesafe.R;
 public class SplashActivity extends Activity {
     private TextView tv_splash_version = null;
     private LinearLayout main_splash = null;
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            loadMainUI();
+        }
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +48,7 @@ public class SplashActivity extends Activity {
         aa.setDuration(200);
         main_splash.setAnimation(aa);
 
-        createDlg();
+        createUI();
     }
 
     private String getVersion() {
@@ -59,20 +69,19 @@ public class SplashActivity extends Activity {
         finish();
     }
 
-    private void createDlg() {
-        AlertDialog.Builder dlg = new AlertDialog.Builder(this);
-
-        dlg.setIcon(R.drawable.icon5);
-        dlg.setTitle("呵呵");
-        dlg.setMessage("what the fuck");
-        dlg.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+    private void createUI() {
+        new Thread(){
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                loadMainUI();
+            public void run() {
+                try {
+                    Thread.sleep(3000);
+                    handler.sendEmptyMessage(0);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-        });
-
-        dlg.create().show();
+        }.start();
     }
+
 
 }
