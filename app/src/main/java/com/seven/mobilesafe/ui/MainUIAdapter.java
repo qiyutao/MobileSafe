@@ -1,7 +1,9 @@
 package com.seven.mobilesafe.ui;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,10 +27,12 @@ public class MainUIAdapter extends BaseAdapter {
             R.drawable.widget08};
     private Context context = null;
     private LayoutInflater inflater = null;
+    private SharedPreferences sp = null;
 
     public MainUIAdapter(Context c) {
         context = c;
         inflater = LayoutInflater.from(context);
+        sp = c.getSharedPreferences("config",Context.MODE_PRIVATE);
     }
 
     @Override
@@ -54,6 +58,14 @@ public class MainUIAdapter extends BaseAdapter {
 
         iv_icon.setImageResource(icon[i]);
         tv_text.setText(name[i]);
+
+        if(i==0) {
+            String name = sp.getString("lost_name", null);
+            if(name!=null) {
+                tv_text.setText(name);
+            }
+
+        }
 
         return view1;
     }

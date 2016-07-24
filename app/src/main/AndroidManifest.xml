@@ -17,9 +17,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.MainActivity"
-            android:label="主界面">
+            android:label="主界面"
+            android:theme="@android:style/Theme.NoTitleBar">
 
         </activity>
+
+        <activity android:name=".ui.LostProtectActivity"
+            android:label="手机防盗"
+            />
     </application>
 
 </manifest>
