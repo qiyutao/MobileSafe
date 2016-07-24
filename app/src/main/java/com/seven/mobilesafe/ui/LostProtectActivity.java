@@ -105,10 +105,24 @@ public class LostProtectActivity extends Activity implements View.OnClickListene
 
                 break;
             case R.id.bt_normal_dialog_ok:
-                Log.i("111111111111","sdasda");
-                break;
-            case R.id.bt_normal_dialog_cancel:
+                //Log.i("111111111111","sdasda");
+                String pwd1 = et_pwd.getText().toString();
+                if("".equals(pwd1)) {
+                    Toast.makeText(getApplicationContext(),"请输入密码",Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                    String save = sp.getString("password",null);
+                    if(save.equals(pwd1)) {
+                        dialog.dismiss();
+                        return;
+                    } else {
+                        Toast.makeText(getApplicationContext(),"密码错误",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
 
+            case R.id.bt_normal_dialog_cancel:
+                dialog.dismiss();
                 break;
         }
         finish();
