@@ -3,9 +3,11 @@ package com.seven.mobilesafe.ui;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,13 +30,16 @@ public class LostProtectActivity extends Activity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lostprotectactivity);
 
-        sp = getSharedPreferences("password", Context.MODE_PRIVATE);
+        sp = getSharedPreferences("config", Context.MODE_PRIVATE);
 
         if(isPWDSetup()) {
             showNormalDialog();
         } else {
             showFirstEntryDialog();
         }
+
+
+
     }
 
     private void showNormalDialog() {
@@ -114,6 +119,13 @@ public class LostProtectActivity extends Activity implements View.OnClickListene
                     String save = sp.getString("password",null);
                     if(save.equals(pwd1)) {
                         dialog.dismiss();
+/*SharedPreferences.Editor editor = sp.edit();
+editor.putBoolean("setup",true);*/
+                        if(!sp.getBoolean("setup",false)) {
+                            finish();
+                            Intent intent = new Intent(this,SetupGuideActivity.class);
+                            startActivity(intent);
+                        }
                         return;
                     } else {
                         Toast.makeText(getApplicationContext(),"密码错误",Toast.LENGTH_SHORT).show();
@@ -126,5 +138,11 @@ public class LostProtectActivity extends Activity implements View.OnClickListene
                 break;
         }
         finish();
+    }
+
+    private boolean isSetup() {
+        return sp.getBoolean("setup",false);
+
+
     }
 }

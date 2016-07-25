@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MobileSafe</string>
+    <string name="setup">设置导向</string>
 </resources>
