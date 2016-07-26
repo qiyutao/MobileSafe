@@ -24,6 +24,7 @@ public class LostProtectActivity extends Activity implements View.OnClickListene
     private Dialog dialog = null;
     private EditText et_pwd = null;
     private EditText et_pwd_confirm = null;
+    private Button btn = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,8 @@ public class LostProtectActivity extends Activity implements View.OnClickListene
             showFirstEntryDialog();
         }
 
-
+        btn = (Button) findViewById(R.id.btn);
+        btn.setOnClickListener(this);
 
     }
 
@@ -136,6 +138,11 @@ editor.putBoolean("setup",true);*/
             case R.id.bt_normal_dialog_cancel:
                 dialog.dismiss();
                 break;
+
+            case R.id.btn:
+                GPSInfoProvider gps = GPSInfoProvider.getInstance(this);
+                Toast.makeText(getApplicationContext(),gps.getLocation(),Toast.LENGTH_SHORT).show();
+                return ;
         }
         finish();
     }

@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.seven.mobilesafe">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <application
@@ -39,6 +41,10 @@
         <activity android:name=".ui.SetupGuide4Activity"
             android:label="setup4"
             />
+
+
     </application>
+
+    
 
 </manifest>
